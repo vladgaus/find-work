@@ -61,7 +61,7 @@ class Work
 		if (array_keys($requires) == array_keys($find)) {
 			$this->companies[] = trim($name);
 		}
-		unset($matches);
+
 	}
 	
 	/**
