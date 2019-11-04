@@ -29,6 +29,11 @@ class Work
 	public $companies = [];
 	
 	/**
+	 * Companies in whicn i can't work
+	 */
+	public $notMyCompanies = [];
+	
+	/**
 	 * Constructor
 	 *
 	 * @param array $board
@@ -60,6 +65,8 @@ class Work
 		// it's mean all keys from company requires must equal all keys from array which preg all our conditions
 		if (array_keys($requires) == array_keys($find)) {
 			$this->companies[] = trim($name);
+		} else {
+			$this->notMyCompanies[] = trim($name);
 		}
 
 	}
@@ -94,11 +101,16 @@ class Work
 	
 	/**
 	 * Get list of filtered companies
+	 * GOOD - companies where i can work
+	 * BAD - companies where i can't work
 	 *
 	 * @return array
 	 */
 	public function get(): array
 	{
-		return $this->companies;
+		return [
+			'GOOD' => $this->companies,
+			'BAD' => $this->notMyCompanies,
+		];
 	}
 }

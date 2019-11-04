@@ -32,7 +32,20 @@ class WorkTest extends TestCase
 					'driver\'s license',
 				],
 				'COMPANIES' => [
-					'"Company J"',
+					'GOOD' => [
+						'"Company J"',
+					],
+					'BAD' => [
+						'"Company A"',
+						'"Company B"',
+						'"Company C"',
+						'"Company D"',
+						'"Company E"',
+						'"Company F"',
+						'"Company G"',
+						'"Company H"',
+						'"Company K"',
+					],
 				],
 			],
 			[
@@ -42,9 +55,20 @@ class WorkTest extends TestCase
 					'insurance',
 				],
 				'COMPANIES' => [
-					'"Company B"',
-					'"Company E"',
-					'"Company J"',
+					'GOOD' => [
+						'"Company B"',
+						'"Company E"',
+						'"Company J"',
+					],
+					'BAD' => [
+						'"Company A"',
+						'"Company C"',
+						'"Company D"',
+						'"Company F"',
+						'"Company G"',
+						'"Company H"',
+						'"Company K"',
+					],
 				],
 			],
 			[
@@ -55,10 +79,20 @@ class WorkTest extends TestCase
 					'apartment'
 				],
 				'COMPANIES' => [
-					'"Company D"',
-					'"Company H"',
-					'"Company J"',
-					'"Company K"',
+					'GOOD' => [
+						'"Company D"',
+						'"Company H"',
+						'"Company J"',
+						'"Company K"',
+					],
+					'BAD' => [
+						'"Company A"',
+						'"Company B"',
+						'"Company C"',
+						'"Company E"',
+						'"Company F"',
+						'"Company G"',
+					],
 				],
 			],
 			[
@@ -66,7 +100,20 @@ class WorkTest extends TestCase
 					'Chine language',
 				],
 				'COMPANIES' => [
-					'"Company J"',
+					'GOOD' => [
+						'"Company J"',
+					],
+					'BAD' => [
+						'"Company A"',
+						'"Company B"',
+						'"Company C"',
+						'"Company D"',
+						'"Company E"',
+						'"Company F"',
+						'"Company G"',
+						'"Company H"',
+						'"Company K"',
+					],
 				],
 			],
 		];
@@ -81,7 +128,9 @@ class WorkTest extends TestCase
 		foreach ($checkList as $checkPoint) {
 			$work = new Work($board, $checkPoint['CONDITIONS']);
 			$work->find();
-			$this->assertEquals($checkPoint['COMPANIES'], $work->get(), "Wrong list of companies");
+			$companies = $work->get();
+			$this->assertEquals($checkPoint['COMPANIES']['GOOD'], $companies['GOOD'], "Wrong list of companies where i can work");
+			$this->assertEquals($checkPoint['COMPANIES']['BAD'], $companies['BAD'], "Wrong list of companies where i can't work");
 		}
 		
 	}
